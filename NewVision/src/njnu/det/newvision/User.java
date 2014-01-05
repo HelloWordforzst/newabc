@@ -11,3 +11,4 @@ public class User {
 	public  String className = "";
 	public  String mood;
 }
+// 提交 是否有变化2014/1/5
