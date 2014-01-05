@@ -12,6 +12,8 @@ public class NV_Host {
 	static String DbName;				//数据库名称
 	static  boolean isLocal;			//当前操作的是否本地数据
 	static String imgPath;				//图片文件的路径 
+	static String port;                 // 添加借口变量
+	
 	
 	public static String getImgPath() {
 		return imgPath;
