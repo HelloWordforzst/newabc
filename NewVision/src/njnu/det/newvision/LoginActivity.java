@@ -60,11 +60,11 @@ public class LoginActivity extends Activity{
 //						" Name TEXT,Grade TEXT);";
 //				dao.CreateTable(sql2,"Admin");
 //				
-//				String sql3 = "CREATE TABLE IF NOT EXISTS writing (" +
-//						"ID INTEGER PRIMARY KEY UNIQUE, " + 
-//						" Number TEXT,Title TEXT,Keyword TEXT,Author TEXT,Date DATE,Content TEXT,Accessory_ID INTEGER,Category_ID INTEGER,Rights INTEGER,Synctime DATE);";
-//				sql3 +="CREATE UNIQUE INDEX IF NOT EXISTS idIndex ON writing (id);";	
-//				dao.CreateTable(sql3,"Admin");
+				String sql3 = "CREATE TABLE IF NOT EXISTS writing (" +
+						"ID INTEGER PRIMARY KEY UNIQUE, " + 
+						"Title TEXT,Keywords TEXT,Author TEXT,Date DATE,Content TEXT,Accessory_ID INTEGER,Synctime DATE);";
+				sql3 +="CREATE UNIQUE INDEX IF NOT EXISTS idIndex ON writing (id);";	
+				dao.CreateTable(sql3,"Admin");
 //				
 //				String sql4 = "CREATE TABLE IF NOT EXISTS comment (" +
 //						"ID INTEGER PRIMARY KEY UNIQUE, " + 

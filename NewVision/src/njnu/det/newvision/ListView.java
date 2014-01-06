@@ -4,6 +4,7 @@ package njnu.det.newvision;
 import android.app.ListActivity;
 import android.os.Bundle;
 
+
 public class ListView extends ListActivity {
 	
 	@Override
@@ -14,6 +15,11 @@ public class ListView extends ListActivity {
         //设置一个Adapter,使用自定义的Adapter
         setListAdapter(new TextImageAdapter(this));*/
     }
+    /**
+     * 自定义视图
+     * @author 飞雪无情
+     *
+     */
    /* private class TextImageAdapter extends BaseAdapter{
         private Context mContext;
     	public TextImageAdapter(Context context) {

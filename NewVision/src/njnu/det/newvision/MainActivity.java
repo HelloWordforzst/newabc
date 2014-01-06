@@ -17,7 +17,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	protected void  onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+		MyApplication.getInstance().addActivity(this);
 		mydiary     =   findViewById(R.id.imageButtonwdrj);
 		writingzone =   findViewById(R.id.imageButtonxzyd);
 		myzone      =   findViewById(R.id.imageButtongrtd);
@@ -47,11 +47,11 @@ public class MainActivity extends Activity implements OnClickListener{
 			Goto(2);
 			break;		
 		case R.id.imageButtongrtd: //个人天地
-			Goto(3);
+			startActivity(new Intent().setClass(MainActivity.this,UserZone.class));
 			break;
 		case R.id.imageButtonxtsz:  // 设置
 			//Goto(4);
-			startActivity(new Intent().setClass(MainActivity.this,SystemSetting.class));
+			startActivity(new Intent().setClass(MainActivity.this,AndroidPreferences.class));
 			break;
 			default:
 				Goto(0);

@@ -170,7 +170,7 @@ public class Table {
 		}
 		
 		//获取指定单元格内容
-		 private Object getTd(int i){
+		 public Object getTd(int i){
 			if(Tr.size() == 0)
 				return null;
 			else

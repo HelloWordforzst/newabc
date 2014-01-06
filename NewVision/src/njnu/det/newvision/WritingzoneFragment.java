@@ -2,6 +2,7 @@ package njnu.det.newvision;
 
 import android.app.Fragment;
 
+
 public class WritingzoneFragment extends Fragment{
 
 	/*@Override

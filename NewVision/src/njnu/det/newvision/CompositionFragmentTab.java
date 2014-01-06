@@ -1,21 +1,23 @@
 package njnu.det.newvision;
 
 
+import java.security.acl.Group;
+
 import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 
 public class CompositionFragmentTab extends ListFragment {
-
+	Table sResult;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -30,7 +32,21 @@ public class CompositionFragmentTab extends ListFragment {
 	        //setContentView(R.layout.listview);
 	        //设置一个Adapter,使用自定义的Adapter
 	        setListAdapter(new TextImageAdapter(getActivity()));
+	        try {
+	         	getData();
+			 } catch (Exception e) {
+				// TODO Auto-generated catch block
+			 	Log.i("NewVision","Error:" + e.getMessage());
+			 }
 	}
+	
+	private void getData() throws Exception{
+		 sResult =null;
+		if(NV_Host.isLocal){
+			WritingResource wr = new WritingResource();
+			sResult = wr.getXML();
+		}
+		}
 	
 	private class TextImageAdapter extends BaseAdapter{
         private Context mContext;
@@ -41,7 +57,8 @@ public class CompositionFragmentTab extends ListFragment {
          * 元素的个数
          */
 		public int getCount() {
-			return texts.length;
+			return sResult.getRowSize();
+			
 		}
 
 		public Object getItem(int position) {
@@ -68,10 +85,11 @@ public class CompositionFragmentTab extends ListFragment {
 			ItemViewCache cache=(ItemViewCache)convertView.getTag();
 			//设置文本和图片，然后返回这个View，用于ListView的Item的展示
 			//cache.mImageView.setImageResource(images[position]);
-			cache.mTextView.setText(texts[position]);
-			//cache.mImageView1.setImageResource(images[position]);
+			cache.mTextView.setText(sResult.Tbody.get(position).getTd(1).toString());
+			Log.d("abc--", sResult.Tbody.get(position).getTd(1).toString());
+//			cache.mImageView1.setImageResource(images[position]);
 			cache.mTextView1.setText(texts1[position]);
-			cache.mTextView2.setText(texts2[position]);
+			cache.mTextView2.setText(sResult.Tbody.get(position).getTd(4).toString());
 			
 			return convertView;
 		}
@@ -79,11 +97,11 @@ public class CompositionFragmentTab extends ListFragment {
 	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		// TODO Auto-generated method stub
-		//super.onListItemClick(l, v, position, id);
-		//Toast.makeText(getActivity(), "选中了", Toast.LENGTH_SHORT).show();
 		Intent intent = new Intent();
-		intent.setClass(getActivity(), ShowActivity.class);
+		intent.setClass(getActivity(), ShowComposition.class);
+		intent.putExtra("sTitle", sResult.Tbody.get(position).getTd(1).toString());
+		intent.putExtra("sDate", sResult.Tbody.get(position).getTd(4).toString());
+		intent.putExtra("sContent", sResult.Tbody.get(position).getTd(5).toString());
 		startActivity(intent);
 	}
 	
@@ -96,54 +114,12 @@ public class CompositionFragmentTab extends ListFragment {
 		//public ImageView mImageView1;
 	}
   //展示的文字
-    private  String[] texts=new String[]{"春意盎然","夏日炎炎","秋高气爽","春意盎然","夏日炎炎","秋高气爽","春意盎然","夏日炎炎","秋高气爽","春意盎然","夏日炎炎","秋高气爽"};
+//    private  String[] texts=new String[]{"春意盎然","夏日炎炎","秋高气爽","春意盎然","夏日炎炎","秋高气爽","春意盎然","夏日炎炎","秋高气爽","春意盎然","夏日炎炎","秋高气爽"};
     private  String[] texts1=new String[]{"评论1","评论2","评论7","评论1","评论2","评论7","评论1","评论2","评论7","评论1","评论2","评论7"};
-    private  String[] texts2=new String[]{"2013-8-17","2013-7-28","2013-8-18","2013-8-17","2013-7-28","2013-8-18","2013-8-17","2013-7-28","2013-8-18","2013-8-17","2013-7-28","2013-8-18"};
-    //展示的图片
-   // private int[] images=new int[]{R.drawable.img1,R.drawable.img2,R.drawable.img3};
+//    private  String[] texts2=new String[]{"2013-8-17","2013-7-28","2013-8-18","2013-8-17","2013-7-28","2013-8-18","2013-8-17","2013-7-28","2013-8-18","2013-8-17","2013-7-28","2013-8-18"};
+   
+    
+    
 	
 }
 
-
-
-
-
-
-/*
- 源码
-  import android.app.Fragment;
- 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-public class EssayFragment extends Fragment{
-
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.essay_layout,null);		
-		return view;
-	}
-}*/
-
-
-
-
-/*package njnu.det.newvision;
-
-import android.app.Fragment;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-public class CompositionFragmentTab extends Fragment {
-
-	
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.composition_layout,null);		
-		return view;
-	}
-}
-*/

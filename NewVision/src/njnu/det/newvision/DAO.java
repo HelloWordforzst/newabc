@@ -1,5 +1,5 @@
 /**
-* @author Tian Jun-hua
+wws* @author Tian Jun-hua
 * @version 1.0
  */
 package njnu.det.newvision;

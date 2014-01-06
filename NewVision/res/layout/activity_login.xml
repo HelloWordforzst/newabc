@@ -1,227 +1,185 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:android1="http://schemas.android.com/apk/res/android"
-    android:id="@+id/loginLayout"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:layout_gravity="center_vertical"
-    android:background="@drawable/bground"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:stretchColumns="*" >
+    android:background="@drawable/bground"
+    tools:context=".Activity_login" >
 
-    <!-- 空行 -->
-    <TableRow 
-       android:id="@+id/space_line00"
-       android:layout_width="match_parent"
-       android:layout_height="20dp">
-	   	<TextView
-	   	    android:id="@+id/space00"
-	   	    android:layout_width="match_parent"
-	   	    android:layout_height="20dp"
-	   	    android:layout_span="4"
-	   	    android:text="@string/Space2"
-	   	    android:textSize="24dp" />
-    </TableRow>
-    <TableRow
-        android:id="@+id/Logo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center">
-        <ImageView
-            android:id="@+id/imgLogo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_span="4"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/logo" />
-
-    </TableRow>
-    
-    <!-- 空行 -->
-    <TableRow 
-       android:id="@+id/space_line1"
-       android:layout_width="match_parent"
-       android:layout_height="30dp">
-	   	<TextView
-	   	    android:id="@+id/space01"
-	   	    android:layout_width="match_parent"
-	   	    android:layout_height="20dp"
-	   	    android:layout_span="4"
-	   	    android:text="@string/Space2"
-	   	    android:textSize="24dp" />
-    </TableRow>
-    
-    <TableRow 
-        android:id="@+id/login_account"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
-        <!-- 账号 -->
-        <TextView
-            android:id="@+id/space11"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <LinearLayout 
+            android:focusable="true" 
+            android:focusableInTouchMode="true"
+             android:layout_width="0px" 
+             android:layout_height="0px">
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/logo" />
+        
+            
+            </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Space1" />
-        <TextView
-            android:id="@+id/txtAccount"
+            android:orientation="vertical" >
+
+            
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    
+                    android:layout_weight="2"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        
+                        android:text="@string/name"
+                     
+                       />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginTop="30dp"
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/edtAccount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.78"
+                        android:inputType="textPersonName" >
+
+                       
+                    </EditText>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                   
+                    android:layout_gravity="left|bottom"
+                   android:layout_weight="2"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/TextView02"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                    
+                        android:text="@string/password" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginTop="30dp"
+                   android:layout_weight="0.5"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/edtPasswd"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+        
+
+       <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:text="@string/loginName"
-            android:textSize="24dp" />
-        <EditText
-            android:id="@+id/edtAccount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:maxLength="10"
-            android:textSize="24dp" />
-        <TextView
-            android:id="@+id/space12"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:text="@string/Space2" />
-    </TableRow>
-    
-   <!-- 空行 -->
-    <TableRow 
-       android:id="@+id/space_line02"
-       android:layout_width="match_parent"
-       android:layout_height="20dp">
+            
+            android:orientation="vertical" >
 
-	   	<TextView
-	   	    android:id="@+id/space02"
-	   	    android:layout_width="match_parent"
-	   	    android:layout_height="wrap_content"
-	   	    android:layout_span="4"
-	   	    android:text="@string/Space2"
-	   	    android:textSize="24dp" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:orientation="vertical" >
 
-    </TableRow>
-    
-    <!-- 密码 -->
-    <TableRow 
-        android:id="@+id/login_passwd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right">
-        <TextView
-            android:id="@+id/space21"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Space1" />
+                <Button
+                    android:id="@+id/btLogin"
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="35dp"
+                   
+                    
+                    android:text="@string/login" />
 
-        <TextView
-            android:id="@+id/txtPwd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:text="@string/password"
-            android:textSize="24dp" />
+            </LinearLayout>
+			
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:orientation="horizontal" >
+                <TextView 
+                    android:id="@+id/forgetPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    
+                    android:text="@string/forgetPassword"
+                    />
+                <TextView 
+                    android:id="@+id/register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                   
+                    android:text="@string/regester"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
-        <EditText
-            android:id="@+id/edtPasswd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:maxLength="10"
-            android:textSize="24dp" />
-
-		<TextView
-            android:id="@+id/space22"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Space2" />
-    </TableRow>
-    
-    <!-- 空行 -->
-    <TableRow 
-       android:id="@+id/space_line03"
-       android:layout_width="match_parent"
-       android:layout_height="20dp">
-
-	   	<TextView
-	   	    android:id="@+id/space03"
-	   	    android:layout_width="match_parent"
-	   	    android:layout_height="wrap_content"
-	   	    android:layout_span="4"
-	   	    android:text="@string/Space2"
-	   	    android:textSize="24dp" />
-    </TableRow>
-    
-    <!-- 确定 -->
-    <TableRow 
-        android:id="@+id/login_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right">
-	   	<TextView
-	           android:id="@+id/space09"
-	           android:layout_width="match_parent"
-	           android:layout_height="wrap_content"
-	           android:text="@string/Space1" />
-	   	<TextView
-	           android:id="@+id/space10"
-	           android:layout_width="match_parent"
-	           android:layout_height="wrap_content"
-	           android:text="@string/Space1" />
-
-		 <Button
-		     android:id="@+id/btLogin"
-		     android:layout_width="match_parent"
-		     android:layout_height="wrap_content"
-		     android:text="@string/login"
-		     android:textSize="24dp" />
-
-		<TextView
-	           android:id="@+id/space15"
-	           android:layout_width="match_parent"
-	           android:layout_height="wrap_content"
-	           android:text="@string/Space2" />
-    </TableRow>
-    
-    <!-- 空行 -->
-    <TableRow 
-       android:id="@+id/space_line04"
-       android:layout_width="match_parent"
-       android:layout_height="80dp">
-
-	   	<TextView
-	   	    android:id="@+id/space04"
-	   	    android:layout_width="match_parent"
-	   	    android:layout_height="wrap_content"
-	   	    android:layout_span="4"
-	   	    android:text="@string/Space2"
-	   	    android:textSize="24dp" />
-
-    </TableRow>
-    
-    <!-- 遗忘密码+注册 -->
-    <TableRow 
-        android:id="@+id/login_regist"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right">
-        <TextView
-            android:id="@+id/forgetPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_span="2"
-            android:text="@string/forgetPassword"
-            android:textSize="24dp" />
-
-        <TextView
-	           android:id="@+id/space81"
-	           android:layout_width="match_parent"
-	           android:layout_height="wrap_content"
-	           android:text="@string/Space1" />
-        <TextView
-            android:id="@+id/register"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:text="@string/register"
-            android:textSize="24dp" />
-    </TableRow>
-</TableLayout>
+</RelativeLayout>

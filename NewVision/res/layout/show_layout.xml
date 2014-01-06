@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     <TextView 
+        android:id="@+id/showCompsitionTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -13,10 +14,11 @@
         android:paddingBottom="10dip"
         />
     <TextView 
+        android:id="@+id/showDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="right"
-        android:text="这是日期"
+        
         android:paddingBottom="5dip"
         
         />
@@ -27,7 +29,7 @@
   	
   	/>
     <EditText 
-        android:id="@+id/showEditText"
+        android:id="@+id/showCompositionContent"
        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="这是正文"

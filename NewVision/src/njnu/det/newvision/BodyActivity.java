@@ -24,16 +24,12 @@ import android.widget.TextView;
 
 public class BodyActivity extends Activity implements OnClickListener, OnMenuItemClickListener{
 	
-	
-	
 	Fragment fEssy;
 	Fragment fComposition;
 	ActionBar.Tab tabE;
 	ActionBar.Tab tabC;
 	ActionBar bar;
-	
-	
-		private DiaryFragment diaryFragment;//用于展示消息的Fragment
+	DiaryFragment diaryFragment;//用于展示消息的Fragment
 		private ContactsFragment contactsFragment;//用于展示联系人的Fragment
 		private WritingzoneFragment writingzoneFragment;//用于展示动态的Fragment
 		//private SettingFragment settingFragment;//用于展示设置的Fragment
@@ -44,7 +40,7 @@ public class BodyActivity extends Activity implements OnClickListener, OnMenuIte
 		private ImageView messageImage;//在Tab布局上显示消息图标的控件
 		private ImageView contactsImage;//在Tab布局上显示联系人图标的控件
 		private ImageView newsImage;//在Tab布局上显示动态图标的控件
-	//	private ImageView settingImage;//在Tab布局上显示设置图标的控件
+	    //	private ImageView settingImage;//在Tab布局上显示设置图标的控件
 		private TextView messageText;//在Tab布局上显示消息标题的控件
 		private TextView contactsText;//在Tab布局上显示联系人标题的控件
 		private TextView newsText;//在Tab布局上显示动态标题的控件
@@ -55,22 +51,7 @@ public class BodyActivity extends Activity implements OnClickListener, OnMenuIte
 		protected void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);		
 			setContentView(R.layout.activity_body);
-			
-			// 初始化布局元素
-			/*//添加标签
-			 bar = getActionBar();
-			//设置为Tab模式
-			bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-			//新建2个Tab
-			tabE = bar.newTab().setText(R.string.essay);
-			tabC = bar.newTab().setText(R.string.composition);
-			//绑定到Fragment
-			fEssy = new EssayFragment();
-			fComposition = new CompositionFragmentTab();
-			tabE.setTabListener(new MyTabsListener(fEssy));
-			tabC.setTabListener(new MyTabsListener(fComposition));
-			bar.addTab(tabE);
-			bar.addTab(tabC);*/
+			MyApplication.getInstance().addActivity(this);
 			
 			findViews();
 			
@@ -85,7 +66,19 @@ public class BodyActivity extends Activity implements OnClickListener, OnMenuIte
 			// 第一次启动时选中第i个tab
 			int i = getIntent().getExtras().getInt("chosenflag");
 			setBottomLayoutSelection(i);
+			
+			//启动后台服务
+			
+			//读取数据 （专有类 填充）
+			
+			
+			//读取网络地址
+			
+			
 		}
+		
+		
+		
 		
 		
 		public void findViews(){
@@ -131,9 +124,7 @@ public class BodyActivity extends Activity implements OnClickListener, OnMenuIte
 				ft.remove(fragment);
 			}
 		}
-			
 		
-
 		@Override
 		public void onClick(View v) {
 			switch (v.getId()) {
@@ -285,6 +276,7 @@ public class BodyActivity extends Activity implements OnClickListener, OnMenuIte
 	
 		protected static final int MENU_ABOUT = Menu.FIRST;
 		protected static final int MENU_Quit = Menu.FIRST + 1;
+		
 		 @Override  
 		    public boolean onCreateOptionsMenu(Menu menu) {  
 		        // Inflate the menu; this adds items to the action bar if it is present.  
@@ -295,9 +287,9 @@ public class BodyActivity extends Activity implements OnClickListener, OnMenuIte
 				
 		        MenuItem addDiary = menu.add(1, 1, 1,R.string.writeDiary);  
 			       addDiary.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-			      MenuItem addEssay = menu.add(1, 1, 1, R.string.writeEssay);  
+			      MenuItem addEssay = menu.add(1, 2, 1, R.string.writeEssay);  
 			       addEssay.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-			       MenuItem addComposition = menu.add(1, 1, 1, R.string.writeComposition);  
+			       MenuItem addComposition = menu.add(1, 3, 1, R.string.writeComposition);  
 			       addComposition.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		          
 		        //给addMenuItem、deleteMenuItem和okMenuItem设置单击事件监听  
@@ -306,8 +298,6 @@ public class BodyActivity extends Activity implements OnClickListener, OnMenuIte
 			       addComposition.setOnMenuItemClickListener(this);
 		    
 		         return true;  
-		           
-		        
 		    }
 
 		 public boolean onOptionsItemSelected(MenuItem item) {
@@ -318,9 +308,9 @@ public class BodyActivity extends Activity implements OnClickListener, OnMenuIte
 					//startActivity(new Intent(this, NewDiary.class)); 
 					{
 						AlertDialog.Builder builder = new Builder(BodyActivity.this);
-						builder.setMessage("NewVision 开发者:\n版本号：beta1\n联系我们：abc@163.com")
-						.setTitle("关于")
-						.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+						builder.setMessage(R.string.aboutus)
+						.setTitle(R.string.about)
+						.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
 							
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
@@ -334,10 +324,37 @@ public class BodyActivity extends Activity implements OnClickListener, OnMenuIte
 					}
 					break;
 				case MENU_Quit:
-					finish();
+				{
+					AlertDialog.Builder builder = new Builder(BodyActivity.this);
+					builder.setMessage(R.string.quitconfirm)
+					
+					.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// TODO Auto-generated method stub
+							MyApplication.getInstance().exit();
+						}
+					})
+					
+					.setNegativeButton(R.string.giveup, new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// TODO Auto-generated method stub
+							
+						}
+					})
+					.show();
+					
+					
+				}
+					
+					MyApplication.getInstance().exit();
+					
 					break;
 				case R.id.action_settings:
-					startActivity(new Intent(this, SystemSetting.class));
+					startActivity(new Intent(this, AndroidPreferences.class));
 				}
 				return true;
 
@@ -350,14 +367,14 @@ public class BodyActivity extends Activity implements OnClickListener, OnMenuIte
 			 
 		        switch (item.getItemId()) {  
 		        case 1:  
-		            startActivity(new Intent(this, NewDiary.class));  
+		            startActivity(new Intent(this, NewComposition.class));  
 		            break;   
-		      /*  case 2:
-		        	 startActivity(new Intent(this, NewEssay.class));  
-			            break;  
-		        case3:
-		        	 startActivity(new Intent(this, NewComposition.class));  
-			            break; */
+		        case 2:  
+		            startActivity(new Intent(this, NewEssay.class));  
+		            break;   
+		        case 3:  
+		            startActivity(new Intent(this, NewComposition.class));  
+		            break;   
 			            
 		        }  
 		        return true;  
