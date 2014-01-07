@@ -47,10 +47,10 @@ public final class R {
         public static final int xzyd=0x7f020017;
     }
     public static final class id {
-        public static final int EditText01=0x7f09003b;
-        public static final int TextView01=0x7f09003a;
+        public static final int EditText01=0x7f09003c;
+        public static final int TextView01=0x7f09003b;
         public static final int TextView02=0x7f09000e;
-        public static final int action_settings=0x7f09003e;
+        public static final int action_settings=0x7f09003f;
         public static final int btFindPwd=0x7f090034;
         public static final int btLogin=0x7f090010;
         public static final int btRegister=0x7f090023;
@@ -67,8 +67,8 @@ public final class R {
         public static final int dmText1=0x7f09002b;
         public static final int dtext=0x7f090028;
         public static final int dtext1=0x7f090029;
-        public static final int editText1=0x7f090039;
-        public static final int editText2=0x7f09003d;
+        public static final int editText1=0x7f09003a;
+        public static final int editText2=0x7f09003e;
         public static final int edtAccount=0x7f09000d;
         public static final int edtAnswer=0x7f090022;
         public static final int edtConfirm=0x7f09001d;
@@ -89,6 +89,7 @@ public final class R {
         public static final int linearLayout1=0x7f09000a;
         public static final int message_image=0x7f090008;
         public static final int message_text=0x7f090009;
+        public static final int news=0x7f090039;
         public static final int news_image=0x7f090002;
         public static final int news_text=0x7f090003;
         public static final int pwdConfirm=0x7f090035;
@@ -100,7 +101,7 @@ public final class R {
         public static final int text1=0x7f09002e;
         public static final int text2=0x7f09002f;
         public static final int textView1=0x7f09000c;
-        public static final int textView2=0x7f09003c;
+        public static final int textView2=0x7f09003d;
         public static final int txtAccount=0x7f090019;
         public static final int txtAnswer=0x7f090021;
         public static final int txtConfirm=0x7f09001c;
@@ -133,7 +134,8 @@ public final class R {
         public static final int show_layout=0x7f030012;
         public static final int text=0x7f030013;
         public static final int userzone_layout=0x7f030014;
-        public static final int writingdiary_layout=0x7f030015;
+        public static final int wirtingzone_layout=0x7f030015;
+        public static final int writingdiary_layout=0x7f030016;
     }
     public static final class menu {
         public static final int main=0x7f080000;

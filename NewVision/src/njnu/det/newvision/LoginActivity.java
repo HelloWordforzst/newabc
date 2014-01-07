@@ -61,9 +61,9 @@ public class LoginActivity extends Activity{
 //				dao.CreateTable(sql2,"Admin");
 //				
 				String sql3 = "CREATE TABLE IF NOT EXISTS writing (" +
-						"ID INTEGER PRIMARY KEY UNIQUE, " + 
-						"Title TEXT,Keywords TEXT,Author TEXT,Date DATE,Content TEXT,Accessory_ID INTEGER,Synctime DATE);";
-				sql3 +="CREATE UNIQUE INDEX IF NOT EXISTS idIndex ON writing (id);";	
+						"ID Text PRIMARY KEY UNIQUE, " + 
+						"Title TEXT,Keywords TEXT,Author TEXT,Date DATE,Content TEXT,EditDate DATE,Accessory_ID TEXT,Synctime DATE);";
+					
 				dao.CreateTable(sql3,"Admin");
 //				
 //				String sql4 = "CREATE TABLE IF NOT EXISTS comment (" +

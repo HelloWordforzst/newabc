@@ -8,6 +8,7 @@ import org.xmlpull.v1.XmlSerializer;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Xml;
@@ -28,7 +29,7 @@ public class NewComposition extends Activity{
 	    keywordsEditText = (EditText)findViewById(R.id.EditText01);
 	    contentEditText = (EditText)findViewById(R.id.editText2);    
 	    actionBar = getActionBar();
-	    actionBar.show();				
+	    actionBar.show();					
 	}
 	
 	@Override
@@ -49,45 +50,52 @@ public class NewComposition extends Activity{
 	private boolean MenuChoice(MenuItem item)
 	{		
 		switch(item.getItemId()){		
-		case 0:		
+		case 0:	
+		{
 			String title = titleEditText.getText().toString();
             String keywords = keywordsEditText.getText().toString();
             String content = contentEditText.getText().toString();
             User user = NV_Host.getLocalUser();
         	String author = user.NikedName;
         	
-        	//告知数据库如何操作
         	String operation ="ADDROW";
         	NV_Host.setOperation(operation);
         	
             SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");     
-            String date = sDateFormat.format(new java.util.Date()); 
+            String date = sDateFormat.format(new java.util.Date());
+            String synctime = "0";
+            String id = author+date;
+            String editdate = date;
+            String accessory_id = "0";
 			try {
-				InsertWriting(title,keywords,author,date,content);
-				Toast.makeText(this, "保存成功", Toast.LENGTH_SHORT).show();	
-				titleEditText.setText("");
-				keywordsEditText.setText("");
-				contentEditText.setText("");
+				InsertWriting(id,title,keywords,author,date,content,editdate,accessory_id,synctime);
+				Toast.makeText(this, "保存成功！", Toast.LENGTH_SHORT).show();	
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 			return true;
+			
+		}
 		case 1:
+		{
 			titleEditText.setText("");
 			keywordsEditText.setText("");
-			contentEditText.setText("");
-			Toast.makeText(this, "放弃保存", Toast.LENGTH_SHORT).show();
+			contentEditText.setText("");			
 			return true;
+		}
+		 
 		}
 		return false;
 	}
 
-	public void InsertWriting(String title,String keywords,String author,String date,String content) throws Exception{		
+	public void InsertWriting(String id,String title, String keywords, String author,
+            String date, String content, String editdate,String accessory_id,String synctime) throws Exception{		
 		if(NV_Host.isLocal){						
 			PaperResource pr = new PaperResource();	
-			String xml=pr.toXML(title,keywords,author,date,content);			
+			String xml=pr.toXML(id,title,keywords,author,date,content,editdate, accessory_id,synctime);			
 			pr.wirteXMLRemote(xml);
 				
 		}

@@ -15,8 +15,8 @@ import android.util.Xml;
 
 public class PaperResource {
 	@Put
-	public String toXML(String title, String keywords, String author,
-			               String date, String content) {			
+	public String toXML(String id,String title, String keywords, String author,
+			               String date, String content, String editdate,String accessory_id,String synctime) {			
 		StringWriter sw = new StringWriter();
 		try {						
 		    XmlSerializer xml = Xml.newSerializer();		
@@ -37,13 +37,18 @@ public class PaperResource {
 				xml.text(DAO.OperationType.UPDATE.toString());
 				xml.endTag("","Operation");
 				xml.startTag("","Condition");
-				xml.text("Title='" + title + "'");
+				xml.text(" Title='" + title +"' and Date='" + date + "'");
 				xml.endTag("","Condition");
 				}			
 						
 			//Table header section
 			
 			xml.startTag("","Theader");
+			
+			xml.startTag("","Col");
+			xml.attribute("","type",Table.DataType.TEXT.toString());
+			xml.text("ID");
+			xml.endTag("","Col");
 					
 	  		xml.startTag("","Col");
 			xml.attribute("","type",Table.DataType.TEXT.toString());
@@ -70,12 +75,30 @@ public class PaperResource {
 			xml.text("Content");
 			xml.endTag("","Col");
 			
+			xml.startTag("","Col");
+			xml.attribute("","type",Table.DataType.DATE.toString());
+			xml.text("EditDate");
+			xml.endTag("","Col");
+			
+			xml.startTag("","Col");
+			xml.attribute("","type",Table.DataType.TEXT.toString());
+			xml.text("Accessory_ID");
+			xml.endTag("","Col");
+			
+			xml.startTag("","Col");
+			xml.attribute("","type",Table.DataType.TEXT.toString());
+			xml.text("Synctime");
+			xml.endTag("","Col");
+			
 			xml.endTag("","Theader");
 			//end table header
 			
 			//Table body Section is table body				
 			xml.startTag("","Tbody");		
 			xml.startTag("","Row");
+			xml.startTag("","Td");
+			xml.text(id);
+			xml.endTag("","Td");
 					
 			xml.startTag("","Td");
 			xml.text(title);
@@ -97,6 +120,18 @@ public class PaperResource {
 			xml.text(content);
 			xml.endTag("","Td");
 			
+			xml.startTag("","Td");
+			xml.text(editdate);
+			xml.endTag("","Td");
+			
+			xml.startTag("","Td");
+			xml.text(accessory_id);
+			xml.endTag("","Td");
+			
+			xml.startTag("","Td");
+			xml.text(synctime);
+			xml.endTag("","Td");
+			
 			xml.endTag("","Row");	
 			xml.endTag("","Tbody");
 			xml.endTag("","Table");
@@ -111,11 +146,12 @@ public class PaperResource {
 		return sw.toString();
 	}
 	@Get
-	public void wirteXMLLocal(String title,String keywords,String author,String date,String content){
+	public void wirteXMLLocal(String id,String title, String keywords, String author,
+            String date, String content, String editdate,String accessory_id,String synctime){
 		DAO dao;
 		try {
 			dao = new DAO(NV_Host.getDbPath(),NV_Host.getDbName());				
-			String xml=toXML(title,keywords,author,date,content);
+			String xml=toXML(id,title,keywords,author,date,content,editdate, accessory_id,synctime);
 			dao.SetXML(xml);
 			dao.Excute();
 		} catch (Exception e) {
@@ -133,75 +169,7 @@ public class PaperResource {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}										
-	}
-	
-		/*StringWriter sw = new StringWriter();
-		try {					
-			XmlSerializer xml = Xml.newSerializer();
-			
-			xml.setOutput(sw);
-			xml.startDocument("UTF-8",true);
-			//Begin Root node
-			xml.startTag("","Table");
-			xml.attribute("","name","writing");
-			//Operation Section
-			xml.startTag("","Operation");
-			xml.text(DAO.OperationType.SELECT.toString());
-			xml.endTag("","Operation");							
-			//Table header section			
-			xml.startTag("","Theader");
-			//0:Writing_ID
-			xml.startTag("", "col");
-			xml.attribute("", "type",Table.DataType.NUMBER.toString());
-			xml.text("Writing_ID");
-			xml.endTag("", "col");
-			//0:Title		
-	  		xml.startTag("","Col");
-			xml.attribute("","type",Table.DataType.TEXT.toString());
-			xml.text("Title");
-			xml.endTag("","Col");
-			//0:Keywords
-			xml.startTag("","Col");
-			xml.attribute("","type",Table.DataType.TEXT.toString());
-			xml.text("Keywords");
-			xml.endTag("","Col");
-			//0:Author
-			xml.startTag("","Col");
-			xml.attribute("","type",Table.DataType.TEXT.toString());
-			xml.text("Author");
-			xml.endTag("","Col");
-			//0:Date
-			xml.startTag("","Col");
-			xml.attribute("","type",Table.DataType.DATE.toString());
-			xml.text("Date");
-			xml.endTag("","Col");
-			//0:Content
-			xml.startTag("","Col");
-			xml.attribute("","type",Table.DataType.TEXT.toString());
-			xml.text("Content");
-			xml.endTag("","Col");
-			//0:Accessory_ID
-			xml.startTag("", "col");
-			xml.attribute("", "type",Table.DataType.NUMBER.toString());
-			xml.text("Writing_ID");
-			xml.endTag("", "col");
-			//0:Synctime
-			xml.startTag("","Col");
-			xml.attribute("","type",Table.DataType.DATE.toString());
-			xml.text("Synctime");
-			xml.endTag("","Col");
-			
-			xml.endTag("","Theader");
-			//end table header
-			xml.endTag("", "Table");
-			xml.flush();
-						
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return sw.toString();						
-	}*/
+	}			
 
 	
 }

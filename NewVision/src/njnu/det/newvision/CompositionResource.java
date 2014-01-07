@@ -12,10 +12,10 @@ import org.xmlpull.v1.XmlSerializer;
 import android.util.Log;
 import android.util.Xml;
 
-public class WritingResource extends ServerResource{
+public class CompositionResource extends ServerResource{
 	@Get
 	public Table getXML(){
-		Table tb = null;
+		Table tb = null;		
 		try {
 			tb = readWriting();
 		} catch (Exception e) {
@@ -28,7 +28,9 @@ public class WritingResource extends ServerResource{
 
 	public Table readWriting() throws Exception{
 		DAO dao = new DAO(NV_Host.getDbPath(),NV_Host.getDbName());
-		
+		//NV_Host 拿值
+		User user = NV_Host.getLocalUser();
+    	String author = user.NikedName;
 		//构造xml查询字符
 		XmlSerializer xml = Xml.newSerializer();
 		StringWriter sw = new StringWriter();
@@ -41,6 +43,9 @@ public class WritingResource extends ServerResource{
 		xml.startTag("","Operation");
 		xml.text(DAO.OperationType.SELECT.toString());
 		xml.endTag("","Operation");
+		xml.startTag("", "Condition");
+		xml.text("Author='" + author +"'");
+		xml.endTag("", "Condition");
 				
 		xml.startTag("", "Theader");
 		xml.startTag("", "col");
@@ -74,6 +79,11 @@ public class WritingResource extends ServerResource{
 		xml.endTag("", "col");
 		
 		xml.startTag("", "col");
+		xml.attribute("", "type",Table.DataType.DATE.toString());
+		xml.text("EditDate");
+		xml.endTag("", "col");
+		
+		xml.startTag("", "col");
 		xml.attribute("", "type",Table.DataType.NUMBER.toString());
 		xml.text("Accessory_ID");
 		xml.endTag("", "col");
@@ -89,37 +99,6 @@ public class WritingResource extends ServerResource{
 		dao.SetXML(sw.toString());
 		dao.Excute();
 		return dao.table;
+	}				
 		
-		
-		/*//构造xml查询结果字符串
-		XmlSerializer sXml = null;
-		if(dao.table.getRowSize() > 0){
-			sXml = Xml.newSerializer();
-			StringWriter rowSw = new StringWriter();
-			sXml.setOutput(rowSw);
-			sXml.startDocument("UTF-8",true);
-			sXml.startTag("", "Table");
-			
-			//先告知多少列
-			Col[] cols = dao.table.getCols();
-			sXml.startTag("", "ColSize");
-			sXml.text(String.valueOf(cols.length));
-			sXml.endTag("", "ColSize");
-			
-			//依次生成各列数据
-			for(int i=0; i<dao.table.getRowSize();i++){
-				Row row = dao.table.getRow(i);
-				for(int j=0;j<dao.table.getColSize();j++){
-					sXml.startTag("", cols[j].getName());
-					sXml.text(row.getString(j));
-					sXml.endTag("", cols[j].getName());
-				}
-			}
-			sXml.endTag("", "Table");
-		}
-		if(sXml !=null)
-			return sw.toString();
-		else 
-			return null;*/
-	}
 }

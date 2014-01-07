@@ -1,8 +1,6 @@
 package njnu.det.newvision;
 
 
-import java.security.acl.Group;
-
 import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
@@ -43,9 +41,16 @@ public class CompositionFragmentTab extends ListFragment {
 	private void getData() throws Exception{
 		 sResult =null;
 		if(NV_Host.isLocal){
-			WritingResource wr = new WritingResource();
+			CompositionResource wr = new CompositionResource();
 			sResult = wr.getXML();
 		}
+		//变量初始化
+		/*sTitles = new String[sResult.getRowSize()];
+		sComments = new String[sResult.getRowSize()];
+		sDates = new String[sResult.getRowSize()];
+		for(int i=0; i< sResult.getRowSize();i++){
+			sTitles[i] =sResult.getRow(i).getString(1); 
+			sDates[i] = sResult.getRow(i).getString(4);*/
 		}
 	
 	private class TextImageAdapter extends BaseAdapter{
@@ -98,10 +103,15 @@ public class CompositionFragmentTab extends ListFragment {
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		Intent intent = new Intent();
-		intent.setClass(getActivity(), ShowComposition.class);
+		intent.setClass(getActivity(), ShowActivity.class);
 		intent.putExtra("sTitle", sResult.Tbody.get(position).getTd(1).toString());
 		intent.putExtra("sDate", sResult.Tbody.get(position).getTd(4).toString());
 		intent.putExtra("sContent", sResult.Tbody.get(position).getTd(5).toString());
+		intent.putExtra("sId", sResult.Tbody.get(position).getTd(0).toString());
+		intent.putExtra("sKeywords", sResult.Tbody.get(position).getTd(2).toString());		
+		intent.putExtra("sAccessoryId", sResult.Tbody.get(position).getTd(7).toString());
+        intent.putExtra("sSynctime", sResult.Tbody.get(position).getTd(8).toString());
+				
 		startActivity(intent);
 	}
 	
@@ -117,9 +127,51 @@ public class CompositionFragmentTab extends ListFragment {
 //    private  String[] texts=new String[]{"春意盎然","夏日炎炎","秋高气爽","春意盎然","夏日炎炎","秋高气爽","春意盎然","夏日炎炎","秋高气爽","春意盎然","夏日炎炎","秋高气爽"};
     private  String[] texts1=new String[]{"评论1","评论2","评论7","评论1","评论2","评论7","评论1","评论2","评论7","评论1","评论2","评论7"};
 //    private  String[] texts2=new String[]{"2013-8-17","2013-7-28","2013-8-18","2013-8-17","2013-7-28","2013-8-18","2013-8-17","2013-7-28","2013-8-18","2013-8-17","2013-7-28","2013-8-18"};
-   
-    
-    
+    //展示的图片
+   // private int[] images=new int[]{R.drawable.img1,R.drawable.img2,R.drawable.img3};
 	
 }
 
+
+
+
+
+
+/*
+ 源码
+  import android.app.Fragment;
+ 
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+public class EssayFragment extends Fragment{
+
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.essay_layout,null);		
+		return view;
+	}
+}*/
+
+
+
+
+/*package njnu.det.newvision;
+
+import android.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+public class CompositionFragmentTab extends Fragment {
+
+	
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.composition_layout,null);		
+		return view;
+	}
+}
+*/

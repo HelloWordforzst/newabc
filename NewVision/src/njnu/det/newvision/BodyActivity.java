@@ -24,12 +24,16 @@ import android.widget.TextView;
 
 public class BodyActivity extends Activity implements OnClickListener, OnMenuItemClickListener{
 	
+	
+	
 	Fragment fEssy;
 	Fragment fComposition;
 	ActionBar.Tab tabE;
 	ActionBar.Tab tabC;
 	ActionBar bar;
-	DiaryFragment diaryFragment;//用于展示消息的Fragment
+	
+	
+		private DiaryFragment diaryFragment;//用于展示消息的Fragment
 		private ContactsFragment contactsFragment;//用于展示联系人的Fragment
 		private WritingzoneFragment writingzoneFragment;//用于展示动态的Fragment
 		//private SettingFragment settingFragment;//用于展示设置的Fragment
@@ -40,7 +44,7 @@ public class BodyActivity extends Activity implements OnClickListener, OnMenuIte
 		private ImageView messageImage;//在Tab布局上显示消息图标的控件
 		private ImageView contactsImage;//在Tab布局上显示联系人图标的控件
 		private ImageView newsImage;//在Tab布局上显示动态图标的控件
-	    //	private ImageView settingImage;//在Tab布局上显示设置图标的控件
+	//	private ImageView settingImage;//在Tab布局上显示设置图标的控件
 		private TextView messageText;//在Tab布局上显示消息标题的控件
 		private TextView contactsText;//在Tab布局上显示联系人标题的控件
 		private TextView newsText;//在Tab布局上显示动态标题的控件
@@ -52,6 +56,21 @@ public class BodyActivity extends Activity implements OnClickListener, OnMenuIte
 			super.onCreate(savedInstanceState);		
 			setContentView(R.layout.activity_body);
 			MyApplication.getInstance().addActivity(this);
+			// 初始化布局元素
+			/*//添加标签
+			 bar = getActionBar();
+			//设置为Tab模式
+			bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+			//新建2个Tab
+			tabE = bar.newTab().setText(R.string.essay);
+			tabC = bar.newTab().setText(R.string.composition);
+			//绑定到Fragment
+			fEssy = new EssayFragment();
+			fComposition = new CompositionFragmentTab();
+			tabE.setTabListener(new MyTabsListener(fEssy));
+			tabC.setTabListener(new MyTabsListener(fComposition));
+			bar.addTab(tabE);
+			bar.addTab(tabC);*/
 			
 			findViews();
 			
@@ -124,7 +143,9 @@ public class BodyActivity extends Activity implements OnClickListener, OnMenuIte
 				ft.remove(fragment);
 			}
 		}
+			
 		
+
 		@Override
 		public void onClick(View v) {
 			switch (v.getId()) {
@@ -287,9 +308,9 @@ public class BodyActivity extends Activity implements OnClickListener, OnMenuIte
 				
 		        MenuItem addDiary = menu.add(1, 1, 1,R.string.writeDiary);  
 			       addDiary.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-			      MenuItem addEssay = menu.add(1, 2, 1, R.string.writeEssay);  
+			      MenuItem addEssay = menu.add(1, 1, 1, R.string.writeEssay);  
 			       addEssay.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-			       MenuItem addComposition = menu.add(1, 3, 1, R.string.writeComposition);  
+			       MenuItem addComposition = menu.add(1, 1, 1, R.string.writeComposition);  
 			       addComposition.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		          
 		        //给addMenuItem、deleteMenuItem和okMenuItem设置单击事件监听  
@@ -298,6 +319,8 @@ public class BodyActivity extends Activity implements OnClickListener, OnMenuIte
 			       addComposition.setOnMenuItemClickListener(this);
 		    
 		         return true;  
+		           
+		        
 		    }
 
 		 public boolean onOptionsItemSelected(MenuItem item) {
@@ -350,7 +373,7 @@ public class BodyActivity extends Activity implements OnClickListener, OnMenuIte
 					
 				}
 					
-					MyApplication.getInstance().exit();
+					//MyApplication.getInstance().exit();
 					
 					break;
 				case R.id.action_settings:
@@ -369,12 +392,12 @@ public class BodyActivity extends Activity implements OnClickListener, OnMenuIte
 		        case 1:  
 		            startActivity(new Intent(this, NewComposition.class));  
 		            break;   
-		        case 2:  
-		            startActivity(new Intent(this, NewEssay.class));  
-		            break;   
-		        case 3:  
-		            startActivity(new Intent(this, NewComposition.class));  
-		            break;   
+		      /*  case 2:
+		        	 startActivity(new Intent(this, NewEssay.class));  
+			            break;  
+		        case3:
+		        	 startActivity(new Intent(this, NewComposition.class));  
+			            break; */
 			            
 		        }  
 		        return true;  

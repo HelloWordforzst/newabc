@@ -52,8 +52,6 @@
         <activity android:name="UserZone"></activity>
         <activity android:name="DiaryList"
             android:configChanges="keyboardHidden|orientation"></activity>
-        <activity android:name="ShowComposition"></activity>
-        <activity android:name="ShowEssay"></activity>
         <activity android:name="NewEssay"></activity>
     </application>
 
